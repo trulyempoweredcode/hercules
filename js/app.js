@@ -35,18 +35,34 @@
   const toggle = document.querySelector('.nav-toggle');
   const drawer = document.querySelector('.nav-mobile');
   if (toggle && drawer) {
+    const navEl = document.querySelector('.nav');
+    const setOpen = (open) => {
+      toggle.setAttribute('aria-expanded', open);
+      drawer.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+      if (navEl) navEl.classList.toggle('menu-open', open);
+    };
     toggle.addEventListener('click', () => {
-      const open = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', !open);
-      drawer.setAttribute('aria-hidden', open);
-      document.body.style.overflow = open ? '' : 'hidden';
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      setOpen(!isOpen);
     });
-    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      toggle.setAttribute('aria-expanded', 'false');
-      drawer.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }));
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
   }
+
+  // --- Back to top button ---
+  (function () {
+    const btn = document.createElement('button');
+    btn.className = 'back-to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+    document.body.appendChild(btn);
+    const onScroll = () => btn.classList.toggle('is-visible', window.scrollY > 600);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
 
   if (!('IntersectionObserver' in window) || reduceMotion) {
     // Fallback: reveal everything immediately, fill all bars, set numerals to target

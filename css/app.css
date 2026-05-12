@@ -487,9 +487,9 @@
 .capacity-split__copy {
   max-width: 56ch;
 }
-.capacity-split__copy h2 {
-  white-space: nowrap;
-  max-width: none;
+.capacity-split__copy h2 { max-width: none; }
+@media (min-width: 720px) {
+  .capacity-split__copy h2 { white-space: nowrap; }
 }
 .capacity-stats {
   display: grid;
@@ -534,8 +534,12 @@
   border-color: var(--line);
 }
 
-/* Universal 40px gap below every H2 */
-h2 { margin-bottom: 40px; font-size: 48px !important; line-height: 1.08; }
+/* Universal H2: 40px gap below, responsive size (smaller on mobile) */
+h2 {
+  margin-bottom: 40px;
+  font-size: clamp(1.75rem, 5.6vw, 3rem) !important;
+  line-height: 1.1;
+}
 .h-stack { gap: 0 !important; }
 .h-stack p { margin-top: 0 !important; }
 .h-stack > .eyebrow { margin-bottom: var(--s-4); }
@@ -3043,3 +3047,126 @@ p { max-width: var(--measure); }
   line-height: var(--lh-loose);
   max-width: 36ch;
 }
+
+/* =============================================================
+   MOBILE / TABLET RESPONSIVE FIXES
+   ============================================================= */
+@media (max-width: 879px) {
+
+  /* --- Nav: visible toggle on home page floating state (dark on light video bg) --- */
+  .nav-toggle {
+    border-color: rgba(10, 15, 23, 0.45);
+  }
+  .nav--solid .nav-toggle { border-color: rgba(255, 255, 255, 0.32); }
+  .nav--solid .nav-toggle span { background: var(--text-inv); }
+  /* When the mobile drawer is open, swap to white logo + white toggle bars regardless of page */
+  .page-home .nav--floating.menu-open .nav__brand img {
+    content: url("../images/logo/hercules-logo-full-white.png");
+  }
+  .page-home .nav--floating.menu-open .nav-toggle span { background: var(--text-inv); }
+  .nav.menu-open .nav-toggle { border-color: rgba(255, 255, 255, 0.32); }
+
+  /* --- Eyebrows: smaller + tighter on mobile --- */
+  .eyebrow {
+    font-size: 0.625rem !important;
+    letter-spacing: 0.08em !important;
+  }
+  .eyebrow::before { width: 18px !important; margin-right: 8px !important; }
+  .tag { font-size: 0.625rem; letter-spacing: 0.08em; }
+
+  /* --- Hero CTAs: one row on mobile --- */
+  .hero__actions {
+    flex-wrap: nowrap;
+    gap: var(--s-2);
+    width: 100%;
+  }
+  .hero__actions .btn {
+    padding: 12px 14px;
+    font-size: 0.78rem;
+    flex: 1 1 auto;
+    justify-content: center;
+    white-space: nowrap;
+    min-width: 0;
+  }
+  .hero__actions .btn .btn__arrow { display: none; }
+
+  /* --- Smaller H2s and H1 on mobile (already addressed in universal rule, plus refinement) --- */
+  h1 { font-size: clamp(2rem, 8vw, 2.75rem) !important; line-height: 1.08; letter-spacing: -0.025em; }
+  h2 { font-size: clamp(1.5rem, 6.2vw, 2.125rem) !important; margin-bottom: var(--s-5); }
+  h3 { font-size: clamp(1.125rem, 4.6vw, 1.375rem); }
+
+  /* Hero heading scale-down */
+  .hero__heading { font-size: clamp(2.125rem, 9vw, 3rem) !important; line-height: 1.05; }
+
+  /* Page-header H1 scale-down */
+  .ph h1 { font-size: clamp(1.875rem, 7.6vw, 2.625rem) !important; }
+
+  /* Capacity-stats megastat numerals */
+  .capacity-stats__row .megastat__num { font-size: clamp(2.75rem, 14vw, 4rem); }
+
+  /* --- About/statement: tighten gap between consecutive paragraphs --- */
+  .statement__body p + p { margin-top: var(--s-3) !important; }
+  .h-stack p + p { margin-top: var(--s-3) !important; }
+  .about-cell p + p { margin-top: var(--s-3); }
+
+  /* --- Footer: center everything on mobile --- */
+  .foot--4col .foot__grid { text-align: center; }
+  .foot--4col .foot__col { align-items: center; }
+  .foot--4col .foot__brand img { margin-left: auto; margin-right: auto; }
+  .foot--4col .foot__brand p,
+  .foot--4col .foot__contact p,
+  .foot--4col .foot__nav ul,
+  .foot--4col .foot__statement-heading { margin-left: auto; margin-right: auto; text-align: center; }
+  .foot--4col .foot__nav ul { align-items: center; }
+  .foot--4col .foot__cta-btn { align-self: center; }
+  .foot--4col .foot__statement { justify-content: center; }
+  .foot__bottom { justify-content: center; text-align: center; }
+
+  /* --- About: hide H mark on mobile (already hidden via display:none rule, kept for safety) --- */
+  .about-grid__mark { display: none !important; }
+
+  /* --- Contact page: extra bottom padding under sub + center form intro --- */
+  .contact-ph .ph__sub { padding-bottom: 20px; }
+  .contact-card .eyebrow,
+  .contact-card h2,
+  .contact-card__lede { text-align: center; }
+  .contact-card .eyebrow::before { display: none; }
+}
+
+/* --- Tablet refinements (between mobile and desktop) --- */
+@media (min-width: 720px) and (max-width: 1023px) {
+  .hero__heading { font-size: clamp(2.75rem, 7vw, 3.75rem) !important; }
+  .ph h1 { font-size: clamp(2.25rem, 5.5vw, 3rem) !important; }
+}
+
+/* =============================================================
+   BACK-TO-TOP BUTTON (desktop, tablet, mobile)
+   ============================================================= */
+.back-to-top {
+  position: fixed;
+  right: clamp(16px, 2.5vw, 32px);
+  bottom: clamp(16px, 2.5vw, 32px);
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: var(--signal);
+  color: var(--ink);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 300ms ease, transform 300ms ease, background 200ms ease;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.35), 0 4px 10px -4px rgba(0, 0, 0, 0.18);
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover { background: var(--signal-1); }
+.back-to-top svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; fill: none; }
+@media (prefers-reduced-motion: reduce) { .back-to-top { transition: none; transform: none; } }
