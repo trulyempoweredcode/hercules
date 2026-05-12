@@ -223,8 +223,6 @@
 .contact-grid__form { position: relative; }
 .contact-grid__form .eyebrow { margin-bottom: var(--s-3); }
 .contact-grid__form h2 {
-  font-size: clamp(1.875rem, 2.6vw, 2.5rem) !important;
-  line-height: 1.1 !important;
   margin: 0 0 var(--s-4) 0 !important;
   max-width: 22ch;
 }
@@ -390,8 +388,6 @@
 }
 .contact-card .eyebrow { margin-bottom: var(--s-3); display: block; }
 .contact-card h2 {
-  font-size: clamp(1.875rem, 2.6vw, 2.5rem) !important;
-  line-height: 1.1 !important;
   margin: 0 0 var(--s-4) 0 !important;
   max-width: 22ch;
 }
@@ -614,8 +610,6 @@ h2 {
 .speed-section__text .eyebrow { margin-bottom: var(--s-2); color: var(--signal-1); }
 .speed-section__text h2 {
   color: var(--text-inv);
-  font-size: clamp(2rem, 3.2vw, 2.75rem);
-  line-height: 1.08;
   max-width: 18ch;
 }
 .speed-section__text .lede {
@@ -662,8 +656,6 @@ h2 {
   }
 }
 .about-split__left h2 {
-  font-size: clamp(2rem, 3.2vw, 2.75rem);
-  line-height: 1.08;
   max-width: 18ch;
 }
 .about-split__left .lede {
@@ -798,8 +790,6 @@ h2 {
 }
 .about-section__text .eyebrow { margin-bottom: var(--s-2); }
 .about-section__text h2 {
-  font-size: clamp(2rem, 3.2vw, 2.75rem);
-  line-height: 1.08;
   margin-bottom: var(--s-3);
   max-width: 18ch;
 }
@@ -1278,7 +1268,7 @@ h2 {
 .foot--4col .foot__nav h4,
 .foot--4col .foot__contact h4 {
   font-family: var(--display);
-  font-size: 1.1rem;
+  font-size: var(--t-md);
   font-weight: 700;
   letter-spacing: var(--tr-snug);
   color: var(--text-inv);
@@ -1321,7 +1311,7 @@ h2 {
 }
 .foot--4col .foot__statement-heading {
   font-family: var(--display);
-  font-size: 3.125rem;
+  font-size: clamp(2.25rem, 4.5vw + 0.5rem, 3.125rem);
   font-weight: 700;
   letter-spacing: -0.028em;
   line-height: 1.05;
@@ -1329,9 +1319,6 @@ h2 {
   max-width: 14ch;
   margin: 0;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
-}
-@media (max-width: 879px) {
-  .foot--4col .foot__statement-heading { font-size: 2.25rem; }
 }
 
 .foot--4col .foot__bottom {
@@ -1395,7 +1382,6 @@ h2 {
 .worldmap__overlay .frame { width: 100%; }
 .worldmap__copy h2 {
   color: var(--text-inv);
-  font-size: clamp(2rem, 4vw, 3.5rem);
   letter-spacing: var(--tr-tight);
   max-width: 18ch;
   text-shadow: 0 2px 16px rgba(0,0,0,0.45);
@@ -1448,6 +1434,10 @@ h2 {
   --t-h2:  clamp(2rem,    2.5vw + 1rem, 3rem);
   --t-h1:  clamp(2.5rem,  4.5vw + 1rem, 5rem);
   --t-mega:clamp(3rem,   8vw + 1rem,  9rem);
+  /* Shared sub-heading scale for card titles (Advantage / About / Delivery rows) */
+  --t-h3-card: clamp(1.125rem, 1.6vw + 1rem, 1.5rem);
+  /* Shared mono / micro-label scale (eyebrow-adjacent captions, coords, compare labels) */
+  --t-mono-label: var(--t-xs);
 
   /* leading */
   --lh-tight: 1.04;
@@ -1671,7 +1661,7 @@ p { max-width: var(--measure); }
 }
 .nav-mobile a {
   font-family: var(--display);
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 5vw, 2rem);
   font-weight: 700;
   letter-spacing: var(--tr-snug);
   color: var(--text-inv);
@@ -1688,6 +1678,7 @@ p { max-width: var(--measure); }
   font-size: var(--t-sm);
   font-weight: 600;
   letter-spacing: -0.005em;
+  line-height: 1.2;
   border: 1px solid transparent;
   transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
   cursor: pointer;
@@ -2526,8 +2517,11 @@ p { max-width: var(--measure); }
   max-width: 720px;
 }
 .h-stack p { margin-top: 40px; }
-.h-stack h2 {
-  font-size: clamp(1.875rem, 3.5vw, 3rem);
+
+/* Solutions — Commercial Flexibility heading (migrated from inline style) */
+.commercial-flex__title {
+  margin-top: var(--s-3);
+  margin-bottom: var(--s-4);
 }
 
 /* ---------- 25. directional reveals ---------- */
@@ -3067,13 +3061,13 @@ p { max-width: var(--measure); }
   .page-home .nav--floating.menu-open .nav-toggle span { background: var(--text-inv); }
   .nav.menu-open .nav-toggle { border-color: rgba(255, 255, 255, 0.32); }
 
-  /* --- Eyebrows: smaller + tighter on mobile --- */
+  /* --- Eyebrows + tags: legible at small size on mobile --- */
   .eyebrow {
-    font-size: 0.625rem !important;
-    letter-spacing: 0.08em !important;
+    font-size: 0.6875rem !important;
+    letter-spacing: 0.06em !important;
   }
   .eyebrow::before { width: 18px !important; margin-right: 8px !important; }
-  .tag { font-size: 0.625rem; letter-spacing: 0.08em; }
+  .tag { font-size: 0.6875rem; letter-spacing: 0.06em; }
 
   /* --- Hero CTAs: one row on mobile --- */
   .hero__actions {
@@ -3083,7 +3077,6 @@ p { max-width: var(--measure); }
   }
   .hero__actions .btn {
     padding: 12px 14px;
-    font-size: 0.78rem;
     flex: 1 1 auto;
     justify-content: center;
     white-space: nowrap;
@@ -3091,19 +3084,43 @@ p { max-width: var(--measure); }
   }
   .hero__actions .btn .btn__arrow { display: none; }
 
-  /* --- Smaller H2s and H1 on mobile (already addressed in universal rule, plus refinement) --- */
-  h1 { font-size: clamp(2rem, 8vw, 2.75rem) !important; line-height: 1.08; letter-spacing: -0.025em; }
-  h2 { font-size: clamp(1.5rem, 6.2vw, 2.125rem) !important; margin-bottom: var(--s-5); }
-  h3 { font-size: clamp(1.125rem, 4.6vw, 1.375rem); }
+  /* --- UNIFIED HEADING SCALE ON MOBILE ---
+     All three H1 contexts share the same clamp formula so the visual
+     "Hercules look" is identical across hero / page-headers / inline H1s. */
+  h1,
+  .hero__heading,
+  .ph h1 {
+    font-size: clamp(1.875rem, 7.6vw, 2.5rem) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.025em;
+  }
+  /* Universal H2 with high enough specificity to win without per-section rules */
+  h2,
+  .h-stack h2,
+  .speed-section__text h2,
+  .about-split__left h2,
+  .about-section__text h2,
+  .worldmap__copy h2,
+  .contact-card h2,
+  .contact-grid__form h2,
+  .capacity-split__copy h2 {
+    font-size: clamp(1.5rem, 6.2vw, 2.125rem) !important;
+    line-height: 1.08 !important;
+    margin-bottom: var(--s-5);
+  }
+  /* H3 baseline */
+  h3 { font-size: clamp(1.125rem, 4.6vw, 1.375rem); line-height: 1.18; }
 
-  /* Hero heading scale-down */
-  .hero__heading { font-size: clamp(2.125rem, 9vw, 3rem) !important; line-height: 1.05; }
+  /* Card-title scale: unified across Advantage / About / Delivery rows */
+  .advantage__title,
+  .about-cell__title,
+  .delivery-row__title {
+    font-size: var(--t-h3-card) !important;
+    line-height: 1.18 !important;
+  }
 
-  /* Page-header H1 scale-down */
-  .ph h1 { font-size: clamp(1.875rem, 7.6vw, 2.625rem) !important; }
-
-  /* Capacity-stats megastat numerals */
-  .capacity-stats__row .megastat__num { font-size: clamp(2.75rem, 14vw, 4rem); }
+  /* Capacity-stats megastat numerals (less aggressive vw on mobile) */
+  .capacity-stats__row .megastat__num { font-size: clamp(2.5rem, 9vw, 4rem); }
 
   /* --- About/statement: tighten gap between consecutive paragraphs --- */
   .statement__body {
