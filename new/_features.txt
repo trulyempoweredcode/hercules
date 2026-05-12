@@ -1,0 +1,85 @@
+﻿WEB SITE
+It's tricky right now because I need something up there but i still don't really want to talk about what we are up to and where, or who is involved etc (from team members to key suppliers) So at the moment it's essentially an exercise of checking the box with the minimum of content. We will replace it with harder hitting stuff in 3-6 mos. 
+I made a survey of all the developer sites out there below and came to the conclusion that we needed relatively few sections. 
+I have attached the thoughts below. 
+This is a quick analysis of typical data center developer websites. Clearly there is a lot of this we can’t do because we don’t have the track record or case studies to trumpet about yet (completed projects etc), so we have to be smart about what we show.
+
+Use the Hercules presentation deck as a guide; I’ve already navigated around most of the tricky waters.
+
+FEATURES REVIEW (GUIDE ONLY!)
+
+I THINK WE ONLY DO 1,3,7, 12 from the below at the moment….
+We don’t have the time or the creds to do the others, or we don’t want people knowing where we are and what we have going on yet. 
+So, it’s light touch on the details, visually strong and contemporary but not overdesigned
+Core points are the issues highlighted in the Hercules presentation:
+Speed and Quality of Execution
+Through Skills, Experience, First Class Partners & Processes, and a solutions-drive or ‘Frontier’ mentality.
+
+
+
+TYPICAL INDUSTRY WEBSITES AND CONTENT
+Here are the typical features and sections you’ll find on a professional data center developer/operator website companies like the below. These sites are designed to attract hyperscale clients, enterprises, colocation customers, and investors. SUMMARY In short: the website is essentially a B2B sales brochure that screams speed, scale, reliability, and future-proofing for AI workloads while never revealing actual customer names or exact availability in public.
+Digital Realty: https://www.digitalrealty.com/Equinix: https://www.equinix.com/CyrusOne: https://www.cyrusone.com/QTS: https://www.equinix.com/Iron Mountain: https://www.ironmountain.com/Vantage Data Centers: https://vantage-dc.com/Stack Infrastructure: https://www.stackinfra.com/
+Core Navigation & Pages: I THINK WE ONLY DO 1,3,7, 12 from the below at the moment….
+
+Home Page
+Hero section with tagline (e.g., “Powering the World’s Digital Future”)
+Global map showing US focus, static
+Generic imagery of data center type stuff for now
+(NOT YET) Key stats: MW under management, locations, total sq ft, customers served
+(NOT YET) Latest news/announcements ticker
+Locations / Portfolio (NOT YET)
+Interactive world map with pins/filters (by region, campus, availability, power, connectivity)
+Individual campus/market pages (e.g., “Northern Virginia”, “Frankfurt FLAPD”, “Singapore”)
+Campus overviews: total MW, buildings, available whitespace/power, expansion plans
+Solutions / Services
+Power development (Grid & Behind The Meter) solutions
+Powered shells / build-to-suit
+Interconnection / cross-connects
+Managed services (rare, but some offer)
+Specifications & Design Standards
+Tier classification (Uptime Institute Tier III or IV)
+Concurrent maintainability, 2N/N+1 redundancy
+Power density per rack (8–100+ kW)
+Cooling types (air, liquid, immersion-ready)
+Seismic and flood zone ratings
+Security: perimeter, mantraps, biometrics, 24/7 guard
+Connectivity & Ecosystem
+Carrier-neutral / meet-me-room details
+List of networks, ISPs, cloud on-ramps present
+Internet exchanges (e.g., LINX, AMS-IX, DE-CIX)
+Partner logos
+Customer Stories / Case Studies
+Logos of major customers (Fortune 500, hyperscalers, financial, content/CDN)
+Short success stories (usually anonymized for hyperscalers)
+About Us
+Company history, years in business, total capacity
+Executive team & board
+Financials (if public) or ownership (private equity backing)
+Investors (if publicly traded or PE-backed)
+Stock ticker, financial reports, investor presentations
+Growth story and pipeline (land bank, MW under development)
+Newsroom / Insights
+Press releases
+Blog or “Insights” section on market trends, AI demand, edge computing, etc.
+White papers and reports (often gated)
+Careers
+Open positions (lots of electrical/mechanical engineers, project managers)
+Contact / Inquiry Forms
+Contact us forms (mandatory fields: company, required capacity, timeline)
+
+Common Design & Technical Features
+Very heavy on visuals: campus renderings, drone footage, interior photos (rarely real hyperscale halls for security)
+Dark/blue color schemes (trust, technology)
+Mobile-responsive (executives browse on phones)
+Gated content (you have to give email to download specs or capacity lists)
+Live availability tools (some have real-time inventory for retail colocation suites)
+Multi-language support (especially Equinix, Digital Realty)
+Current Trends (2024–2025)
+Heavy emphasis on AI-ready facilities (50–150 kW racks, liquid cooling readiness)
+“GW-scale campuses” marketing
+Land bank and power pipeline disclosures
+District cooling / heat reuse projects
+
+
+
