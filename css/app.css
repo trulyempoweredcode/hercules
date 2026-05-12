@@ -309,7 +309,7 @@
 .form--bold .field textarea {
   border: 2.5px solid var(--line) !important;
   background: var(--paper) !important;
-  padding: 14px 16px !important;
+  padding: var(--s-3) var(--s-4) !important;
   font-size: var(--t-md);
   color: var(--ink);
   transition: border-color 200ms, box-shadow 200ms;
@@ -500,7 +500,7 @@
 }
 .capacity-stats__row {
   background: var(--paper-2);
-  padding: var(--s-5) var(--s-5);
+  padding: var(--s-6) var(--s-6);
   display: flex;
   flex-direction: column;
   gap: 4px;                     /* tiny gap between number and label */
@@ -530,9 +530,9 @@
   border-color: var(--line);
 }
 
-/* Universal H2: 40px gap below, responsive size (smaller on mobile) */
+/* Universal H2: 32px gap below, responsive size */
 h2 {
-  margin-bottom: 40px;
+  margin-bottom: var(--s-6);
   font-size: clamp(1.75rem, 5.6vw, 3rem) !important;
   line-height: 1.1;
 }
@@ -1718,7 +1718,7 @@ p { max-width: var(--measure); }
   color: var(--text-inv);
   overflow: hidden;
   isolation: isolate;
-  padding-block: var(--s-9);
+  padding-block: clamp(96px, 12vw, 160px);
 }
 .hero__media {
   position: absolute;
@@ -1839,7 +1839,7 @@ p { max-width: var(--measure); }
 /* ---------- 8. statement (large) ---------- */
 .statement {
   text-align: left;
-  padding-block: clamp(80px, 12vw, var(--s-11));
+  padding-block: clamp(72px, 10vw, 128px);
 }
 .statement__lead {
   font-family: var(--display);
@@ -2171,6 +2171,7 @@ p { max-width: var(--measure); }
   font-size: clamp(2.5rem, 5vw, 4rem);
   letter-spacing: var(--tr-tight);
   line-height: 1.02;
+  margin-top: var(--s-4);
   margin-bottom: var(--s-4);
   max-width: 18ch;
 }
@@ -2274,7 +2275,7 @@ p { max-width: var(--measure); }
   font-family: var(--mono);
 }
 .field input, .field select, .field textarea {
-  padding: 14px 16px;
+  padding: var(--s-3) var(--s-4);
   border: 1px solid var(--line);
   background: var(--paper);
   font: inherit;
@@ -2522,6 +2523,23 @@ p { max-width: var(--measure); }
 .commercial-flex__title {
   margin-top: var(--s-3);
   margin-bottom: var(--s-4);
+}
+.commercial-flex__band {
+  border-left: 3px solid var(--signal);
+  padding: var(--s-5) 0 var(--s-5) var(--s-6);
+  background: transparent;
+}
+
+/* Utility: consecutive ledes get a top-margin (was inline `style="margin-top:var(--s-4)"`) */
+.lede + .lede,
+.capacity-split__copy .lede + .lede,
+.h-stack .lede + .lede { margin-top: var(--s-4); }
+
+/* Utility: centered CTA wrapper inside a section */
+.cta-center {
+  margin-top: var(--s-5);
+  display: flex;
+  justify-content: center;
 }
 
 /* ---------- 25. directional reveals ---------- */
@@ -3076,7 +3094,7 @@ p { max-width: var(--measure); }
     width: 100%;
   }
   .hero__actions .btn {
-    padding: 12px 14px;
+    padding: var(--s-3) var(--s-4);
     flex: 1 1 auto;
     justify-content: center;
     white-space: nowrap;
@@ -3124,10 +3142,22 @@ p { max-width: var(--measure); }
 
   /* --- About/statement: tighten gap between consecutive paragraphs --- */
   .statement__body {
-    gap: var(--s-2) !important;
+    gap: var(--s-3) !important;
     margin-top: var(--s-4) !important;
   }
   .statement__body p + p { margin-top: 0 !important; }
+
+  /* --- Section header → grid margin tightening (was 64px on mobile, now 32) --- */
+  .delivery-rows,
+  .advantage { margin-top: var(--s-6) !important; }
+
+  /* --- Footer grid mobile gap: less aggressive (was 48px) --- */
+  .foot--4col .foot__grid { gap: var(--s-5); }
+
+  /* --- Card intra-content gaps: scale down one token step on mobile --- */
+  .about-cell { gap: var(--s-3); }
+  .delivery-row__text { gap: var(--s-2); }
+  .contact-aside-list { gap: var(--s-4); }
   .h-stack { gap: var(--s-2) !important; }
   .h-stack p { margin-top: var(--s-2) !important; }
   .h-stack p + p { margin-top: var(--s-2) !important; }
