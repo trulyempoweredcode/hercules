@@ -170,31 +170,71 @@
   setTimeout(scrollCheck, 100);
   setTimeout(scrollCheck, 600);
 
-  // --- Hero heading: split into words and blur-fade each in sequence ---
+  // --- Hero heading + subtitle: split into words and blur-fade each in
+  //     sequence. CTAs slide in from left/right after the copy resolves. ---
   (function () {
-    var heading = document.querySelector('.hero__heading');
-    if (!heading) return;
-    var walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT, null);
-    var nodes = []; var n;
-    while ((n = walker.nextNode())) nodes.push(n);
-    var idx = 0;
-    nodes.forEach(function (tn) {
-      if (!tn.textContent.trim()) return;
-      var parts = tn.textContent.split(/(\s+)/);
-      var frag = document.createDocumentFragment();
-      parts.forEach(function (p) {
-        if (!p) return;
-        if (!p.trim()) { frag.appendChild(document.createTextNode(p)); return; }
-        var s = document.createElement('span');
-        s.className = 'word';
-        s.style.animationDelay = (idx * 0.08) + 's';
-        s.textContent = p;
-        frag.appendChild(s);
-        idx++;
+    function splitWords(el, baseDelaySec, stepSec) {
+      if (!el) return 0;
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+      var nodes = []; var n;
+      while ((n = walker.nextNode())) nodes.push(n);
+      var idx = 0;
+      nodes.forEach(function (tn) {
+        if (!tn.textContent.trim()) return;
+        var parts = tn.textContent.split(/(\s+)/);
+        var frag = document.createDocumentFragment();
+        parts.forEach(function (p) {
+          if (!p) return;
+          if (!p.trim()) { frag.appendChild(document.createTextNode(p)); return; }
+          var s = document.createElement('span');
+          s.className = 'word';
+          s.style.animationDelay = (baseDelaySec + idx * stepSec) + 's';
+          s.textContent = p;
+          frag.appendChild(s);
+          idx++;
+        });
+        tn.parentNode.replaceChild(frag, tn);
       });
-      tn.parentNode.replaceChild(frag, tn);
+      return idx; // number of words split
+    }
+
+    var heading = document.querySelector('.hero__heading');
+    var sub = document.querySelector('.hero__sub');
+    var ctas = document.querySelectorAll('.hero__cta');
+
+    var headingWords = splitWords(heading, 0, 0.08);
+    // Subtitle starts ~80ms after the last heading word fires
+    var headingFinishMs = 80 + (headingWords > 0 ? (headingWords - 1) * 80 + 600 : 0);
+    var subStartSec = Math.max(0.5, (headingFinishMs - 80) / 1000 - 0.15);
+    splitWords(sub, subStartSec, 0.035);
+
+    if (heading) setTimeout(function () { heading.classList.add('anim-in'); }, 80);
+    if (sub) setTimeout(function () { sub.classList.add('anim-in'); }, 80);
+
+    // CTAs slide in after the subtitle has mostly resolved
+    if (ctas.length) {
+      var subWordCount = sub ? sub.querySelectorAll('.word').length : 0;
+      var subFinishMs = (subStartSec * 1000) + subWordCount * 35 + 600;
+      var ctaStart = Math.max(1100, subFinishMs - 200);
+      ctas.forEach(function (btn, i) {
+        setTimeout(function () { btn.classList.add('anim-in'); }, ctaStart + i * 140);
+      });
+    }
+
+    // Inner-page page-headers (.ph): same word-fade treatment for h1 + ph__sub
+    document.querySelectorAll('.ph h1').forEach(function (h) {
+      if (h === heading) return; // already handled above
+      var n = splitWords(h, 0, 0.08);
+      setTimeout(function () { h.classList.add('anim-in'); }, 120);
     });
-    setTimeout(function () { heading.classList.add('anim-in'); }, 80);
+    document.querySelectorAll('.ph__sub').forEach(function (s) {
+      var ph = s.closest('.ph');
+      var ownH1 = ph ? ph.querySelector('h1') : null;
+      var hWords = ownH1 ? ownH1.querySelectorAll('.word').length : 0;
+      var startSec = Math.max(0.45, (hWords > 0 ? (hWords - 1) * 0.08 + 0.45 : 0.5));
+      splitWords(s, startSec, 0.035);
+      setTimeout(function () { s.classList.add('anim-in'); }, 120);
+    });
   })();
 
   // --- Hero video: simple autoplay + loop, no scrub ---
