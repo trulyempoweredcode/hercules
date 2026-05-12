@@ -1491,7 +1491,7 @@ h2 {
 
 /* ---------- 2. reset ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: var(--sans);
   font-size: var(--t-md);
@@ -1499,6 +1499,7 @@ body {
   color: var(--text);
   background: var(--paper);
   overflow-x: hidden;
+  width: 100%;
 }
 img, svg, video { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
@@ -3105,9 +3106,27 @@ p { max-width: var(--measure); }
   .capacity-stats__row .megastat__num { font-size: clamp(2.75rem, 14vw, 4rem); }
 
   /* --- About/statement: tighten gap between consecutive paragraphs --- */
-  .statement__body p + p { margin-top: var(--s-3) !important; }
-  .h-stack p + p { margin-top: var(--s-3) !important; }
+  .statement__body {
+    gap: var(--s-2) !important;
+    margin-top: var(--s-4) !important;
+  }
+  .statement__body p + p { margin-top: 0 !important; }
+  .h-stack { gap: var(--s-2) !important; }
+  .h-stack p { margin-top: var(--s-2) !important; }
+  .h-stack p + p { margin-top: var(--s-2) !important; }
   .about-cell p + p { margin-top: var(--s-3); }
+
+  /* --- Nav: bigger right gutter so the toggle has breathing room from screen edge,
+        and account for notched / safe-area devices --- */
+  .nav__inner {
+    padding-right: max(var(--gutter), env(safe-area-inset-right, 16px));
+    padding-left: max(var(--gutter), env(safe-area-inset-left, 16px));
+  }
+  /* Push the toggle a hair further in from the edge to feel intentional */
+  .nav-toggle { margin-right: 4px; }
+
+  /* --- Worldmap base image: left-center on mobile so the U.S. shape is visible --- */
+  .worldmap--hero .worldmap__base { object-position: left center; }
 
   /* --- Footer: center everything on mobile --- */
   .foot--4col .foot__grid { text-align: center; }
