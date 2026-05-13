@@ -219,21 +219,18 @@
     var ctas = document.querySelectorAll('.hero__cta');
 
     var headingWords = splitWords(heading, 0, 0.08);
-    // Subtitle starts ~80ms after the last heading word fires
-    var headingFinishMs = 80 + (headingWords > 0 ? (headingWords - 1) * 80 + 600 : 0);
-    var subStartSec = Math.max(0.5, (headingFinishMs - 80) / 1000 - 0.15);
+    // Subtitle starts alongside the heading (word-by-word stagger still gives texture)
+    var subStartSec = 0;
     splitWords(sub, subStartSec, 0.035);
 
     if (heading) setTimeout(function () { heading.classList.add('anim-in'); }, 80);
     if (sub) setTimeout(function () { sub.classList.add('anim-in'); }, 80);
 
-    // CTAs slide in after the subtitle has mostly resolved
+    // CTAs come in shortly after the heading starts, not after the subtitle finishes
     if (ctas.length) {
-      var subWordCount = sub ? sub.querySelectorAll('.word').length : 0;
-      var subFinishMs = (subStartSec * 1000) + subWordCount * 35 + 600;
-      var ctaStart = Math.max(1100, subFinishMs - 200);
+      var ctaStart = 350;
       ctas.forEach(function (btn, i) {
-        setTimeout(function () { btn.classList.add('anim-in'); }, ctaStart + i * 140);
+        setTimeout(function () { btn.classList.add('anim-in'); }, ctaStart + i * 90);
       });
     }
 
@@ -244,11 +241,8 @@
       setTimeout(function () { h.classList.add('anim-in'); }, 120);
     });
     document.querySelectorAll('.ph__sub').forEach(function (s) {
-      var ph = s.closest('.ph');
-      var ownH1 = ph ? ph.querySelector('h1') : null;
-      var hWords = ownH1 ? ownH1.querySelectorAll('.word').length : 0;
-      var startSec = Math.max(0.45, (hWords > 0 ? (hWords - 1) * 0.08 + 0.45 : 0.5));
-      splitWords(s, startSec, 0.035);
+      // Subtitle animates in alongside the H1 (word-by-word stagger still gives texture)
+      splitWords(s, 0, 0.035);
       setTimeout(function () { s.classList.add('anim-in'); }, 120);
     });
   })();
@@ -300,4 +294,18 @@
   if (t) t.value = Date.now();
   const p = document.querySelector('input[name="_page"]');
   if (p) p.value = location.pathname.split('/').pop() || 'index.html';
+
+  // --- Form: loading state on submit ---
+  const form = document.querySelector('form.form');
+  if (form) {
+    form.addEventListener('submit', () => {
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = true;
+        btn.classList.add('is-loading');
+      }
+      form.classList.add('is-submitting');
+      form.setAttribute('aria-busy', 'true');
+    });
+  }
 })();

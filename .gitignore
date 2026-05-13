@@ -1,3 +1,5 @@
 video/*.bak
 gen_*.py
 new/
+config.php
+images/logo/favicon.af
